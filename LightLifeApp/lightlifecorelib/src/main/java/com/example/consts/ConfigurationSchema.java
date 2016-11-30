@@ -12,6 +12,7 @@ public class ConfigurationSchema {
 	static public final String ProjectTag = "project";
 	static public final String NameTag = "name";
 	static public final String ProjectId = "id";
+	static public final String ProjectParentId = "parentId";
 	static public final String DescriptionsTag = "descriptions";
 	static public final String TimeCostsTag = "timecosts";
 	static public final String RecordTag = "record";

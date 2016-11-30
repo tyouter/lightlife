@@ -104,6 +104,11 @@ public class DataHelper {
         if (idString != null) {
             project.setId(StringUtils.string2Long(idString));
         }
+        // parse id
+        String parentIdString = element.getAttribute(ConfigurationSchema.ProjectParentId);
+        if (parentIdString != null) {
+            project.setParentId(StringUtils.string2Long(parentIdString));
+        }
         // parse name
         String name = getNodeValue(element, ConfigurationSchema.NameTag);
         project.setName(name);
@@ -192,9 +197,12 @@ public class DataHelper {
 
     private static void writeProject(Project prj, Document doc, Element rootElement) {
         Element project = doc.createElement(ConfigurationSchema.ProjectTag);
-        Attr attr = doc.createAttribute(ConfigurationSchema.ProjectId);
-        attr.setValue(StringUtils.long2String(prj.getId()));
-        project.setAttributeNode(attr);
+        Attr attrId = doc.createAttribute(ConfigurationSchema.ProjectId);
+        attrId.setValue(StringUtils.long2String(prj.getId()));
+        project.setAttributeNode(attrId);
+        Attr attrParentId = doc.createAttribute(ConfigurationSchema.ProjectParentId);
+        attrParentId.setValue(StringUtils.long2String(prj.getParentId()));
+        project.setAttributeNode(attrParentId);
         rootElement.appendChild(project);
         // write name
         Element name = doc.createElement(ConfigurationSchema.NameTag);
@@ -214,7 +222,7 @@ public class DataHelper {
         project.appendChild(record);
         List<IRecordSegment> segments = prj.getSegments();
         if (segments != null) {
-            for (int i = 1; i < segments.size(); ++i) {
+            for (int i = 0; i < segments.size(); ++i) {
                 IRecordSegment seg = segments.get(i);
                 // write id
                 Element segment = doc.createElement(ConfigurationSchema.RecordSegmentTag);

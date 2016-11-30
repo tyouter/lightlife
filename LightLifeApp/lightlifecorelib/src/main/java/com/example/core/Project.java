@@ -31,6 +31,10 @@ public class Project {
      */
     private long mId;
     /**
+     * Parent project id, 0 is for root
+     */
+    private long mParentId = 0;
+    /**
      * A record for history options and outputs
      */
     private IRecord mRecord;
@@ -123,7 +127,19 @@ public class Project {
         return null;
     }
 
+    public long getParentId() {
+        return mParentId;
+    }
+
+    public void setParentId(long parentId) {
+        mParentId = parentId;
+    }
+
     public void addSubProject(Project project) {
+        if(project == null) {
+            return;
+        }
+        project.setParentId(mId);
         mSubProjects.add(project);
     }
 }
