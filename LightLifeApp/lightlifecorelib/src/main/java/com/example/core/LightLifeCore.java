@@ -18,11 +18,7 @@ public class LightLifeCore {
 
     public void initialize(String path) {
         mPath = path;
-        if (!FileUtils.fileExist(path)) {
-            mValid = FileUtils.createFile(path);
-        }else {
-            mValid = true;
-        }
+        mValid = FileUtils.fileExist(path) || FileUtils.createFile(path);
     }
     public boolean load() {
         try {
@@ -36,10 +32,6 @@ public class LightLifeCore {
 
     public boolean isValid() {
         return mValid;
-    }
-
-    public ProjectTree getProjectTree() {
-        return mProjectTree;
     }
 
     public void setProjectTree(ProjectTree projectTree) {
