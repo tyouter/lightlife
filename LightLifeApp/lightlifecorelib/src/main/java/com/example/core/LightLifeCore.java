@@ -6,21 +6,27 @@ package com.example.core;
 import com.example.utils.FileUtils;
 
 /**
- * Main entry of this project as a SDK
+ * Main entry of the core
  *
  * @author Administrator
  */
+@SuppressWarnings("unused")
 public class LightLifeCore {
 
     private ProjectTree mProjectTree;
     private boolean mValid;
     private String mPath;
+    private PatternLibrary mPatternLibrary;
 
     public void initialize(String path) {
         mPath = path;
         mValid = FileUtils.fileExist(path) || FileUtils.createFile(path);
+        if (mValid) {
+            load();
+        }
     }
-    public boolean load() {
+
+    private boolean load() {
         try {
             mProjectTree = DataHelper.read(mPath);
             mValid = mProjectTree != null;
@@ -34,11 +40,11 @@ public class LightLifeCore {
         return mValid;
     }
 
-    public void setProjectTree(ProjectTree projectTree) {
+    private void setProjectTree(ProjectTree projectTree) {
         mProjectTree = projectTree;
     }
 
-    public void save() {
+    private void save() {
         if (mValid) {
             if (mProjectTree != null) {
                 DataHelper.write(mProjectTree, mPath);

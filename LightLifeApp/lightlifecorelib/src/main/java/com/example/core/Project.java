@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * @author Administrator
  */
-public class Project {
+class Project {
     /**
      * Project name
      */

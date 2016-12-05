@@ -10,5 +10,5 @@ import com.example.interfaces.ICommand;
  *
  */
 public class Command implements ICommand {
-
+    
 }

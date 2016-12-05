@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author Administrator
  */
-public class ProjectTree {
+class ProjectTree {
     List<Project> mProjects;
 
     public ProjectTree() {

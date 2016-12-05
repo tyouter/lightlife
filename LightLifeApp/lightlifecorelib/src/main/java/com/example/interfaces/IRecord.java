@@ -10,6 +10,6 @@ import java.util.List;
  *
  */
 public interface IRecord {
-	public void addSegment(IRecordSegment segment);
-	public List<IRecordSegment> getSegments();
+	void addSegment(IRecordSegment segment);
+	List<IRecordSegment> getSegments();
 }
